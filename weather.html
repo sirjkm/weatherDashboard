@@ -6,13 +6,54 @@
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/open-weather/2.0.0/openweather.min.js"></script>
     <link rel="stylesheet" href="./assets/style/style.css">
 </head>
+
 <body>
     <div class="parent">
         <div class="div1">Weather Dashboard</div>
-        <div class="div2">Search</div>
-        <div class="div3">Atlanta</div>
+        <div class="div2">
+            <nav class="nav flex-column">
+                <h3>Search for a City</h3>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn" id="fetch-button"><i class="fa fa-search"></i></button>
+                </form>
+
+                <ul style="list-style-type: none;">
+                    <li>
+                        <a class="nav-link" href="#">Cleveland</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Austin</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Chicago</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">New York</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Orlando</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">San Francisco</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Seattle</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Denver</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Atlanta</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="div3" id="results"></div>
         <div class="div4">Day 1</div>
         <div class="div5">Day 2</div>
         <div class="div6">Day 3</div>
@@ -20,6 +61,6 @@
         <div class="div8">Day 5</div>
     </div>
 
-    <script src="./assets/javascript/script.js"></script>
+    <script src="./assets/script/script.js"></script>
 </body>
 </html>

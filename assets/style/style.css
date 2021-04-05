@@ -6,35 +6,103 @@ grid-column-gap: 0px;
 grid-row-gap: 0px;
 }
 
+/* style header */
 .div1 {
     grid-area: 1 / 1 / 2 / 8;
+    background-color: #6b705c;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
 }
 
+/* style search card header */
 .div2 {
     grid-area: 2 / 1 / 6 / 3;
+    background-color: #b7b7a4;
+    color: white;
+    text-align: center;
+    align-items: center;
 }
 
+/* style search bar & button */
+.form-control, me-2 {
+    width: 50%;
+    align-items: center;
+    margin-left: 10%;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    margin-bottom: 1rem;
+    background-color: #ddbea9;
+    color: white;
+    border: none;
+}
+
+/* style link list */
+li {
+    border: thin solid black;
+    background-color: whitesmoke;
+    width: 90%;
+    text-align: left;
+}
+
+/* style main weather info */
 .div3 {
     grid-area: 2 / 3 / 4 / 8;
+    background-color: #ffe8d6;
 }
 
+/* style five-day forecast */
 .div4 {
     grid-area: 4 / 3 / 6 / 4;
+    background-color: #cb997e;
+    margin: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .div5 {
     grid-area: 4 / 4 / 6 / 5;
+    background-color: #cb997e;
+    margin: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .div6 {
     grid-area: 4 / 5 / 6 / 6;
+    background-color: #cb997e;
+    margin: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .div7 {
     grid-area: 4 / 6 / 6 / 7;
+    background-color: #cb997e;
+    margin: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .div8 {
     grid-area: 4 / 7 / 6 / 8;
+    background-color: #cb997e;
+    margin: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
 }
 
