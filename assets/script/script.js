@@ -1,76 +1,67 @@
-const form = document.querySelector(".nav form");
-const input = document.querySelector(".nav input");
-//const msg = document.querySelector(".top-banner .msg");
-//const list = document.querySelector(".ajax-section .cities");
-const apiKey = "6db77ab9c950eb85dfb10d4ad6446a97";
+function renderWeatherSummary(city, date, temp, humidity, windSpeed) {
 
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let inputVal = input.value;
+var myDate = new Date(date);
+var month = myDate.getMonth();
+var day = myDate.getDate();
 
-  //check if there's already a city
-    const listItems = list.querySelectorAll(".ajax-section .city");
-    const listItemsArray = Array.from(listItems);
-
-    if (listItemsArray.length > 0) {
-    const filteredArray = listItemsArray.filter((el) => {
-        let content = "";
-        if (inputVal.includes(",")) {
-        if (inputVal.split(",")[1].length > 2) {
-        inputVal = inputVal.split(",")[0];
-        content = el
-            .querySelector(".city-name span")
-            .textContent.toLowerCase();
-        } else {
-        content = el.querySelector(".city-name").dataset.name.toLowerCase();
-        }
-    } else {
-        content = el.querySelector(".city-name span").textContent.toLowerCase();
-    }
-    return content == inputVal.toLowerCase();
-    });
-
-    if (filteredArray.length > 0) {
-    msg.textContent = `You already know the weather for ${
-        filteredArray[0].querySelector(".city-name span").textContent
-    } ...otherwise be more specific by providing the country code as well 😉`;
-    form.reset();
-    input.focus();
-    return;
-    }
+var resultsDiv = document.getElementById("results");
+resultsDiv.innerHTML = `<div>${city}</div>
+                        <div>DATE: ${month}/${day}</div>
+                        <div>TEMP: ${temp}</div>
+                        <div>HUMIDITY: ${humidity}</div>
+                        <div>WIND SPEED: ${windSpeed}</div>`;
 }
 
-const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=metric`;
+function renderFirstDayWeather(daynum, date, weatherType, temp, humitdity) {
+var kelvin = temp;
+var celcius = kelvin - 273;
+let fahrenheit = Math.floor(celcius * (9/5) + 32);
 
-fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-    const { main, name, sys, weather } = data;
-    const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${weather[0]["icon"]}.svg`;
+var myDate = new Date(date);
+var month = myDate.getMonth()
+var day = myDate.getDate()
 
-    const li = document.createElement("li");
-    li.classList.add("city");
-    const markup = `
-        <h2 class="city-name" data-name="${name},${sys.country}">
-        <span>${name}</span>
-        <sup>${sys.country}</sup>
-        </h2>
-        <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
-        <figure>
-        <img class="city-icon" src="${icon}" alt="${
-        weather[0]["description"]
-    }">
-        <figcaption>${weather[0]["description"]}</figcaption>
-        </figure>
-    `;
-    li.innerHTML = markup;
-    list.appendChild(li);
+var resultsDiv = document.getElementById("day" + daynum);
+resultsDiv.innerHTML = `<div><u>Date</u></br>${month}/${day}</div>
+                        <div><u>Forecast</u></br>${weatherType}</div>
+                        <div><u>Temp</u></br>${fahrenheit}<span id="outputFar"></span></div>
+                        <div><u>Humidity</u></br>${humitdity}</div>`;
+}
+
+function renderWeatherAPIData(city) {
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=6db77ab9c950eb85dfb10d4ad6446a97`)
+    .then(res => { return res.json()})
+    .then(handleAPIResponse);
+}
+
+function handleAPIResponse(json) {
+var kelvin = json.list[0].main.temp;
+var celcius = kelvin - 273;
+let fahrenheit = Math.floor(celcius * (9 / 5) + 32);
+
+    console.log(json.city.name)
+    console.log("JSON", json)
+    renderWeatherSummary(json.city.name, json.list[0].dt_txt, fahrenheit, json.list[0].main.humidity, json.list[0].wind.speed);
+    var day = 0
+    for (i = 0; i < json.cnt; i+=8) {
+    console.log(json.list[i])
+    renderFirstDayWeather(day, json.list[i].dt_txt, json.list[i].weather[0].description, json.list[i].main.temp, json.list[i].main.humidity);
+    day++
+}
+}
+
+var navLinkList = document.getElementsByClassName("nav-link");
+
+for (i = 0; i < navLinkList.length; i++) {
+    navLinkList[i].addEventListener("click", function(event) {
+    console.log(event.target.innerHTML);
+    renderWeatherAPIData(event.target.innerHTML);
     })
-    .catch(() => {
-    msg.textContent = "Please search for a valid city 😩";
-    });
+}
 
-msg.textContent = "";
-form.reset();
-input.focus();
-});
+var searchButtonElement = document.getElementById("fetch-button");
+
+searchButtonElement.addEventListener("click", function() {
+    console.log(document.getElementById("search-box").value);
+    renderWeatherAPIData(document.getElementById("search-box").value);
+})

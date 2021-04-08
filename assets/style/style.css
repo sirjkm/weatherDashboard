@@ -53,56 +53,43 @@ li {
 .div3 {
     grid-area: 2 / 3 / 4 / 8;
     background-color: #ffe8d6;
+    text-align: left;
+    justify-content: center;
+    padding-top: 5%;
+    padding: 5%;
+    font-weight: bold;
+    font-size: large;
+}
+
+
+.dayGridBox {
+    background-color: #cb997e;
+    color: white;
+    margin: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
 }
 
 /* style five-day forecast */
-.div4 {
+#day0 {
     grid-area: 4 / 3 / 6 / 4;
-    background-color: #cb997e;
-    margin: 1rem;
-    border: 1px solid black;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
 }
 
-.div5 {
+#day1 {
     grid-area: 4 / 4 / 6 / 5;
-    background-color: #cb997e;
-    margin: 1rem;
-    border: 1px solid black;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
 }
 
-.div6 {
+#day2 {
     grid-area: 4 / 5 / 6 / 6;
-    background-color: #cb997e;
-    margin: 1rem;
-    border: 1px solid black;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
 }
 
-.div7 {
+#day3 {
     grid-area: 4 / 6 / 6 / 7;
-    background-color: #cb997e;
-    margin: 1rem;
-    border: 1px solid black;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
 }
 
-.div8 {
+#day4 {
     grid-area: 4 / 7 / 6 / 8;
-    background-color: #cb997e;
-    margin: 1rem;
-    border: 1px solid black;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
 }
 
