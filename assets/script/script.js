@@ -6,7 +6,7 @@ var day = myDate.getDate();
 
 var resultsDiv = document.getElementById("results");
 resultsDiv.innerHTML = `<div>${city}</div>
-                        <div>DATE: ${month+1}/${day}</div>
+                        <div>DATE: ${month + 1}/${day}</div>
                         <div>TEMP: ${temp}</div>
                         <div>HUMIDITY: ${humidity}</div>
                         <div>WIND SPEED: ${windSpeed}</div>`;
